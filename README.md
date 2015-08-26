@@ -10,13 +10,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist dinhtrung/yii2-setting "*"
+php composer.phar require --prefer-dist TomaszKane/yii2-setting "*"
 ```
 
 or add
 
 ```
-"dinhtrung/yii2-setting": "*"
+"TomaszKane/yii2-setting": "*"
 ```
 
 to the require section of your `composer.json` file.
@@ -30,7 +30,7 @@ In your configuration file, add the setting component.
 ```php
 'components' => [
 	...
-	'setting' => 'dinhtrung\setting\Setting',
+	'setting' => 'TomaszKane\setting\Setting',
 	...
 ]
 ```
@@ -42,7 +42,7 @@ You can choose which table to store the setting item, which will be auto-generat
 	...
 	'setting' => [
 		'class' => 'dinhtrung\setting\Setting',
-		'setting_table' => 'website_setting',
+		'settingTable' => 'website_setting',
 	]
 	...
 ]
@@ -52,7 +52,8 @@ In anywhere from your code, you can use those features:
 
 ```php
 $setting = Yii::$app->setting->get('category', 'key', 'default value');
-$setting = Yii::$app->setting->set('category', 'key', 'new value');
+Yii::$app->setting->set('category', 'key', 'new value');
+Yii::$app->setting->commit();
 ```
 
 Or you can query all setting as one
@@ -65,4 +66,5 @@ $settingArray = Yii::$app->setting->set('category', [
 	'key2' => 'value2',
 	'key3' => 'value3',
 ]);
+Yii::$app->setting->commit();
 ```
