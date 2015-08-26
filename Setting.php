@@ -1,6 +1,6 @@
 <?php
 
-namespace dinhtrung\setting;
+namespace tomaszkane\setting;
 
 /**
  * Settings Model

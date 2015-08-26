@@ -10,13 +10,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist TomaszKane/yii2-setting "*"
+php composer.phar require --prefer-dist tomaszkane/yii2-setting "*"
 ```
 
 or add
 
 ```
-"TomaszKane/yii2-setting": "*"
+"tomaszkane/yii2-setting": "*"
 ```
 
 to the require section of your `composer.json` file.
@@ -30,7 +30,7 @@ In your configuration file, add the setting component.
 ```php
 'components' => [
 	...
-	'setting' => 'TomaszKane\setting\Setting',
+	'setting' => 'tomaszkane\setting\Setting',
 	...
 ]
 ```
@@ -41,7 +41,7 @@ You can choose which table to store the setting item, which will be auto-generat
 'components' => [
 	...
 	'setting' => [
-		'class' => 'dinhtrung\setting\Setting',
+		'class' => 'tomaszkane\setting\Setting',
 		'settingTable' => 'website_setting',
 	]
 	...

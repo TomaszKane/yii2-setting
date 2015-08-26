@@ -1,5 +1,5 @@
 {
-    "name": "TomaszKane/yii2-setting",
+    "name": "tomaszkane/yii2-setting",
     "description": "Store settings in the database",
     "type": "yii2-extension",
     "keywords": ["yii2", "extension", "setting"],
