@@ -162,7 +162,7 @@ class Setting extends \yii\base\Component {
 	 * @param string $category
 	 * @param mixed $key
 	 * @param mixed $value
-	 * @return
+	 * @return integer
 	 *
 	 */
 	private function addDbItem($category = 'system', $key, $value) {
@@ -191,13 +191,16 @@ class Setting extends \yii\base\Component {
 						':value' => $_value
 					] )->execute();
 		}
+
+        return $command;
 	}
 
 	/**
-	 * @return
+	 * @return boolean
 	 *
 	 */
 	public function commit() {
+        $success = true;
 		$this->_cacheFlush = array ();
 		if (count ( $this->_catToBeDel ) > 0) {
 			foreach ( $this->_catToBeDel as $catName ) {
@@ -241,8 +244,11 @@ class Setting extends \yii\base\Component {
 		/** @FIXME: Switch to batch mode... **/
 		if (count ( $this->_toBeSave ) > 0) {
 			foreach ( $this->_toBeSave as $catName => $keyValues ) {
-				foreach ( $keyValues as $k => $v )
-					$this->addDbItem ( $catName, $k, $v );
+				foreach ( $keyValues as $k => $v ) {
+                    if (!$this->addDbItem($catName, $k, $v)) {
+                        $success = false;
+                    }
+                }
 				$this->_cacheFlush [] = $catName;
 			}
 		}
@@ -251,5 +257,7 @@ class Setting extends \yii\base\Component {
 			foreach ( $this->_cacheFlush as $catName )
 				Yii::$app->cache->delete ( $catName . '_setting' );
 		}
+
+        return $success;
 	}
 }
